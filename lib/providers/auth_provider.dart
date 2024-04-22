@@ -1,37 +1,54 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_finals_web/screens/home.dart';
-import 'package:flutter_finals_web/providers/auth_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleButton extends StatelessWidget {
-  const GoogleButton({Key? key}) : super(key: key);
+class AuthProvider extends ChangeNotifier {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton.icon(
-        onPressed: () => _signInWithGoogle(context),
-        icon: Icon(Icons.login),
-        label: Text('Login Using Google'),
-      ),
-    );
+  User? _user;
+  String? _username; // Add username variable
+
+  User? get user => _user;
+  String? get username => _username;
+
+  // Constructor
+  AuthProvider() {
+    // Initialize user when the class is instantiated
+    _user = _auth.currentUser;
+    _username = _user?.displayName; // Initialize username if available
   }
 
-  void _signInWithGoogle(BuildContext context) async {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    await authProvider.signInWithGoogle();
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
 
-    final user = authProvider.user;
-    if (user != null) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          fullscreenDialog: true,
-          builder: (context) => HomeScreen(),
-        ),
-      );
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleSignInAccount.authentication;
+
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        final UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+        _user = userCredential.user;
+        _username = _user?.displayName;
+        notifyListeners();
+      }
+    } catch (error) {
+      print('Error signing in with Google: $error');
     }
+  }
+
+  Future<void> signOut() async {
+    await _auth.signOut();
+    _user = null;
+    _username = null;
+
+    notifyListeners();
   }
 }

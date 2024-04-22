@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_finals_web/widgets/login_widget.dart';
-import 'package:flutter_finals_web/providers/auth_provider.dart'; // Import AuthProvider
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
@@ -14,20 +13,44 @@ void main() async {
       appId: "1:997141921548:web:09ad4be66b79bed6e8d329",
     ),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Define a method for getting user info
+
+  Future<void> getUserInfo() async {
+    // Call your method to get user info here
+    // For example:
+    await getUser();
+    // Ensure to replace `getUser()` with the actual method you use
+    setState(() {});
+    // If needed, call setState after updating state
+    print(uid);
+    // Print user ID or any user info
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      home: ChangeNotifierProvider(
-        // Wrap your root widget with ChangeNotifierProvider
-        create: (context) =>
-            AuthProvider(), // Provide an instance of AuthProvider
-        child: LoginDialog(), // Set LoginDialog as the initial screen
-      ),
+      home: LoginDialog(),
     );
   }
 }
+
+Future<void> getUser() async {}
+String uid = '';

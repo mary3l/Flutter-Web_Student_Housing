@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_finals_web/providers/auth_provider.dart';
 import 'package:flutter_finals_web/screens/home.dart';
-import 'package:flutter_finals_web/services/auth.dart';
 import 'package:flutter_finals_web/widgets/google_sign_in_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginDialog extends StatefulWidget {
-  const LoginDialog({super.key});
+  const LoginDialog({Key? key}) : super(key: key);
 
   @override
-  State<LoginDialog> createState() => _LoginDialogState();
+  _LoginDialogState createState() => _LoginDialogState();
 }
 
 class _LoginDialogState extends State<LoginDialog> {
-  //for states of the button like google sign in button
-
-  //used for creating new account
-  // bool isRegistering = false;
   bool isLoggingIn = false;
-
-  String? loginStatus;
-  // Color loginStringColor = Colors.green;
-
-  //define a method to validate a
 
   @override
   Widget build(BuildContext context) {
