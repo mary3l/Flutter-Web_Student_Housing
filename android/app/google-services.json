@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "997141921548",
+    "project_id": "student-housing-db",
+    "storage_bucket": "student-housing-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997141921548:android:658af55b173d84a5e8d329",
+        "android_client_info": {
+          "package_name": "com.arisenlab.flutter_finals_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997141921548-vh53d2d1dcckitdhocgjord2dl0jkbuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_wnLFbkEfoqY-1cv8R0zoEvS67wF8U6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997141921548-epoqo00oaqrld0rk9jgqvb8i4amkl4p7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "997141921548-9s8n4p4a8r4r8kpnb1p7q9diibpjh8gs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arisenlab.flutterFinals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997141921548:android:db0e89bcd514c27ae8d329",
+        "android_client_info": {
+          "package_name": "com.studenthousingdbproject.student_housing_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997141921548-mbjgdnj04097h26ecbt5sm054vsrt9d7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.studenthousingdbproject.student_housing_mobile",
+            "certificate_hash": "6a59ed3765cc09f9f3527749cb12e5830e6adea4"
+          }
+        },
+        {
+          "client_id": "997141921548-vh53d2d1dcckitdhocgjord2dl0jkbuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_wnLFbkEfoqY-1cv8R0zoEvS67wF8U6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997141921548-epoqo00oaqrld0rk9jgqvb8i4amkl4p7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "997141921548-9s8n4p4a8r4r8kpnb1p7q9diibpjh8gs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arisenlab.flutterFinals"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
