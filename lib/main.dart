@@ -1,5 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_finals_web/widgets/login_widget.dart';
 
 Future<void> main() async {
@@ -45,9 +45,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: LoginDialog(),
+      home: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            border: Border.all(),
+            image: DecorationImage(
+              image: AssetImage(
+                  "assets/images/bg.jpg"), // Replace with your image path
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: LoginDialog(),
+        ),
+      ),
     );
   }
 }

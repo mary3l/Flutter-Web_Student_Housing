@@ -17,8 +17,18 @@ class _GoogleButtonState extends State<GoogleButton> {
     return Center(
       child: ElevatedButton.icon(
         onPressed: _isProcessing ? null : _signInWithGoogle,
-        icon: Icon(Icons.login),
-        label: Text('Login Using Google'),
+        icon: Icon(Icons.login, color: Colors.white),
+        label: Text(
+          'Login Using Google',
+          style: TextStyle(color: Colors.white),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor:
+              Colors.black, // this sets the background color of the button
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
       ),
     );
   }
