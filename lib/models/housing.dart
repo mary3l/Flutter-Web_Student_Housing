@@ -1,4 +1,3 @@
-//model for housing
 class HousingModel {
   final String? id;
   final String description;
@@ -7,8 +6,10 @@ class HousingModel {
   final bool isVisitorsAllowed;
   final String name;
   final int pricing;
-  final List<ContactModel> contacts;
-  final List<RoomModel> rooms;
+  final int contactMobile;
+  final String contactEmail;
+  // final Map<String, RoomModel> rooms;
+  final List<String> housePhotoUrl;
 
   HousingModel({
     this.id,
@@ -18,13 +19,36 @@ class HousingModel {
     required this.isVisitorsAllowed,
     required this.name,
     required this.pricing,
-    required this.rooms,
-    required this.contacts,
+    required this.contactEmail,
+    required this.contactMobile,
+    required this.housePhotoUrl,
   });
+
+  factory HousingModel.fromMap(Map<String, dynamic> map) {
+    // var contactsMap = (map['contacts'] as Map<String, dynamic>).map(
+    //   (key, value) => MapEntry(key, ContactModel.fromMap(value)),
+    // );
+    // var roomsMap = (map['rooms'] as Map<String, dynamic>).map(
+    //   (key, value) => MapEntry(key, RoomModel.fromMap(value)),
+    // );
+    var photoUrls = List<String>.from(map['housePhotoUrl'] ?? []);
+
+    return HousingModel(
+      // id: documentId,
+      description: map['description'] ?? '',
+      isPetsAllowed: map['isPetsAllowed'] ?? false,
+      isVisible: map['isVisible'] ?? false,
+      isVisitorsAllowed: map['isVisitorsAllowed'] ?? false,
+      name: map['name'] ?? '',
+      pricing: map['pricing'] ?? 0,
+      contactEmail: map['contactEmail'] ?? '',
+      contactMobile: map['contactMobile'] ?? 0,
+      // rooms: roomsMap,
+      housePhotoUrl: photoUrls,
+    );
+  }
 }
 
-//model for Rooms
-// for room information
 class RoomModel {
   final String roomId;
   final String roomType;
@@ -32,7 +56,7 @@ class RoomModel {
   final int pricing;
   final bool isVacant;
   final bool hasOwnBathroom;
-  final String? roomPhotoUrl;
+  final List<String> roomPhotoUrl;
 
   RoomModel({
     required this.roomId,
@@ -41,37 +65,18 @@ class RoomModel {
     required this.pricing,
     required this.isVacant,
     required this.hasOwnBathroom,
-    this.roomPhotoUrl,
+    required this.roomPhotoUrl,
   });
 
   factory RoomModel.fromMap(Map<String, dynamic> map) {
     return RoomModel(
-      roomId: map['roomId'],
-      roomType: map['roomType'],
-      maxCapacity: map['maxCapacity'],
-      pricing: map['pricing'],
-      isVacant: map['isVacant'],
-      hasOwnBathroom: map['hasOwnBathroom'],
-      roomPhotoUrl: map['roomPhotoUrl'],
-    );
-  }
-}
-
-//models for contact details
-// this is for the housing information
-class ContactModel {
-  final String email;
-  final int mobile;
-
-  ContactModel({
-    required this.email,
-    required this.mobile,
-  });
-
-  factory ContactModel.fromMap(Map<String, dynamic> map) {
-    return ContactModel(
-      email: map['email'],
-      mobile: map['mobile'],
+      roomId: map['roomId'] ?? '',
+      roomType: map['roomType'] ?? '',
+      maxCapacity: map['maxCapacity'] ?? 0,
+      pricing: map['pricing'] ?? 0,
+      isVacant: map['isVacant'] ?? false,
+      hasOwnBathroom: map['hasOwnBathroom'] ?? false,
+      roomPhotoUrl: List<String>.from(map['roomPhotoUrl'] ?? []),
     );
   }
 }

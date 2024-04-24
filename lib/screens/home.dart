@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_finals_web/providers/auth_provider.dart';
+import 'package:flutter_finals_web/widgets/login_widget.dart';
+import 'package:flutter_finals_web/widgets/housing_card.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName;
@@ -28,49 +31,57 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Card(
-          margin: EdgeInsets.all(20),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
-          ),
-          child: Container(
-            padding: EdgeInsets.all(20),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Welcome, $userName!',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 40), // Adjust the height for spacing
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _signOut(context);
-                            },
-                            child: Text('Sign Out'),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                'Welcome, $userName!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('student housings')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    }
+
+                    List<DocumentSnapshot> housings =
+                        snapshot.data!.docs.toList();
+
+                    return ListView.builder(
+                      itemCount: housings.length,
+                      itemBuilder: (context, index) {
+                        return HousingCard(
+                          housingId: housings[index].id,
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await _signOut(context);
+                },
+                child: Text('Sign Out'),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -78,11 +89,13 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> _signOut(BuildContext context) async {
     try {
-      signOutGoogle();
-      Navigator.popUntil(
-          context,
-          ModalRoute.withName(
-              Navigator.defaultRouteName)); // Go back to the root route
+      await FirebaseAuth.instance.signOut();
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+            builder: (context) =>
+                LoginDialog()), // Navigate to the login screen after signing out
+        (Route<dynamic> route) => false,
+      );
     } catch (error) {
       print('Sign-out error: $error');
     }

@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Chavez_Mabano_Final_Flutter_Exam',
       home: Scaffold(
         body: Container(
           decoration: BoxDecoration(

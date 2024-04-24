@@ -1,7 +1,9 @@
+// this is the container for the login widget
+// named as dialog for best practices usese
+
+// no functionality in here only ui
+// functionality for google sign in is in here google_sign_in_button.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_finals_web/screens/home.dart';
-import 'package:flutter_finals_web/providers/auth_provider.dart';
 import 'package:flutter_finals_web/widgets/google_sign_in_button.dart';
 
 class LoginDialog extends StatefulWidget {

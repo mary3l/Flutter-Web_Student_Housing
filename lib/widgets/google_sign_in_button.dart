@@ -1,3 +1,6 @@
+// functionality for the button in signing in using Google
+// additional functionality has that if user has been signed in it will send to dashboard the user's name
+
 import 'package:flutter/material.dart';
 import 'package:flutter_finals_web/screens/home.dart';
 import 'package:flutter_finals_web/services/auth.dart';
