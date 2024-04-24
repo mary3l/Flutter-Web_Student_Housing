@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
             color: Colors.white, // Text color set to white
           ),
         ),
-        backgroundColor: Colors.grey[900], // App bar color set to orange
+        backgroundColor: Colors.grey[900], // App bar color set to grey
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -38,7 +38,11 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Text(
                 'Welcome, $userName!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Expanded(
@@ -92,8 +96,9 @@ class HomeScreen extends StatelessWidget {
       await FirebaseAuth.instance.signOut();
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-            builder: (context) =>
-                LoginDialog()), // Navigate to the login screen after signing out
+          builder: (context) =>
+              LoginDialog(), // Navigate to the login screen after signing out
+        ),
         (Route<dynamic> route) => false,
       );
     } catch (error) {
