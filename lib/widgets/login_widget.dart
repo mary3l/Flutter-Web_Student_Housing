@@ -24,19 +24,13 @@ class _LoginDialogState extends State<LoginDialog> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(),
-          image: DecorationImage(
-            image: AssetImage(
-              "assets/images/bg.jpg", // Replace with your image path
-            ),
-            fit: BoxFit.cover,
-          ),
         ),
         child: Stack(
           children: [
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.orange[700], // Adjust opacity as needed
+                  color: Colors.orange[700],
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),

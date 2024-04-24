@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_finals_web/services/auth.dart';
+import 'package:flutter_finals_web/providers/auth_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName;
