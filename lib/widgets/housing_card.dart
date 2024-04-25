@@ -75,67 +75,60 @@ class HousingCard extends StatelessWidget {
                               .housePhotoUrl, // Ensures the image covers the available space without distorting aspect ratio
                         ),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Email: ${housing.contactEmail}',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10,
-                              letterSpacing: 1.1,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 2,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(1, 1),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(
+                              10), // Set the border radius to 10
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Email: ${housing.contactEmail}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  letterSpacing: 1.1,
                                 ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            housing.name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Contact Information:',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                              fontStyle: FontStyle.italic,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 2,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(1, 1),
+                              ),
+                              SizedBox(
+                                  height:
+                                      8), // Add space between email and name
+                              Text(
+                                housing.name,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            'Mobile: ${housing.contactMobile}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              letterSpacing: 1.1,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 2,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(1, 1),
+                              ),
+                              SizedBox(height: 4), // Adjust spacing as needed
+                              Text(
+                                'Contact Information:',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2,
+                                  fontStyle: FontStyle.italic,
                                 ),
-                              ],
-                            ),
+                              ),
+                              Text(
+                                'Mobile: ${housing.contactMobile}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                              // Add more Text widgets for additional details here
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ],

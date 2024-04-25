@@ -1,5 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_finals_web/models/housing.dart';
 
 class HousingDetailsCard extends StatelessWidget {
@@ -14,32 +14,53 @@ class HousingDetailsCard extends StatelessWidget {
         title: Text('Housing Details'),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        child: Card(
+          child: Row(
             children: [
-              // Display image gallery
-              if (housing.housePhotoUrl.isNotEmpty)
-                ImageGallery(images: housing.housePhotoUrl),
-              SizedBox(height: 20),
-              Text(
-                'Name: ${housing.name}',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Expanded(
+                child: ImageGallery(images: housing.housePhotoUrl),
               ),
-              SizedBox(height: 10),
-              Text('Description: ${housing.description}'),
-              SizedBox(height: 10),
-              Text('Price: ${housing.pricing}'),
-              SizedBox(height: 10),
-              Text('Pets Allowed: ${housing.isPetsAllowed ? 'Yes' : 'No'}'),
-              SizedBox(height: 10),
-              Text(
-                  'Visitors Allowed: ${housing.isVisitorsAllowed ? 'Yes' : 'No'}'),
-              SizedBox(height: 10),
-              Text('Contact Information:'),
-              Text('Email: ${housing.contactEmail}'),
-              Text('Mobile: ${housing.contactMobile}'),
+              Expanded(
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(
+                            10), // Set the border ra dius to 10
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name: ${housing.name}',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                            Text('Description: ${housing.description}'),
+                            SizedBox(height: 10),
+                            Text('Price: ${housing.pricing}'),
+                            SizedBox(height: 10),
+                            Text(
+                                'Pets Allowed: ${housing.isPetsAllowed ? 'Yes' : 'No'}'),
+                            SizedBox(height: 10),
+                            Text(
+                                'Visitors Allowed: ${housing.isVisitorsAllowed ? 'Yes' : 'No'}'),
+                            SizedBox(height: 10),
+                            Text('Contact Information:'),
+                            Text('Email: ${housing.contactEmail}'),
+                            Text('Mobile: ${housing.contactMobile}'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
