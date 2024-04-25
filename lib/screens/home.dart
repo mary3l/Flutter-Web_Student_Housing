@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_finals_web/widgets/login_widget.dart';
 import 'package:flutter_finals_web/widgets/housing_card.dart';
 
@@ -34,14 +34,21 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                'Welcome, $userName!',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+            Container(
+              decoration: BoxDecoration(
+                // color: Colors.orange, // Set the background color to orange
+                borderRadius:
+                    BorderRadius.circular(10), // Set the border radius to 10
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  'Welcome, $userName!',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -65,10 +72,18 @@ class HomeScreen extends StatelessWidget {
                         snapshot.data!.docs.toList();
 
                     return ListView.builder(
+                      scrollDirection:
+                          Axis.horizontal, // Set scroll direction to horizontal
                       itemCount: housings.length,
                       itemBuilder: (context, index) {
-                        return HousingCard(
-                          housingId: housings[index].id,
+                        return Container(
+                          width: MediaQuery.of(context).size.width *
+                              0.3, // 80% of screen width
+                          height: MediaQuery.of(context).size.height *
+                              0.4, // 40% of screen height // Set the height of the card
+                          child: HousingCard(
+                            housingId: housings[index].id,
+                          ),
                         );
                       },
                     );

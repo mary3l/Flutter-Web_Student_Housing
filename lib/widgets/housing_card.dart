@@ -57,8 +57,11 @@ class HousingCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (housing.housePhotoUrl.isNotEmpty)
-                  ImageGallery(
-                    images: housing.housePhotoUrl,
+                  Expanded(
+                    child: ImageGallery(
+                      images: housing
+                          .housePhotoUrl, // Ensures the image covers the available space without distorting aspect ratio
+                    ),
                   ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -66,62 +69,42 @@ class HousingCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        housing.name,
+                        'Email: ${housing.contactEmail}',
                         style: TextStyle(
-                          color: Colors.white, // Set text color to white
-                          fontSize: 25, // Set font size to 20
-                          fontWeight:
-                              FontWeight.bold, // Set font weight to bold
-                        ), // Set text color to white
-                      ),
-                      Text(
-                        'Price: ${housing.pricing}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18, // Set font size to 18
-                          fontWeight:
-                              FontWeight.bold, // Set font weight to bold
-                          letterSpacing: 1.2, // Add letter spacing for clarity
-                          fontStyle: FontStyle.italic, // Set italic style
+                          color: Colors.grey,
+                          fontSize: 10,
+                          letterSpacing: 1.1,
                           shadows: [
                             Shadow(
                               blurRadius: 2,
                               color: Colors.black.withOpacity(0.5),
                               offset: Offset(1, 1),
-                            ), // Add a subtle shadow for better contrast
+                            ),
                           ],
+                        ),
+                      ),
+                      Text(
+                        housing.name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         'Contact Information:',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18, // Set font size to 18
-                          fontWeight:
-                              FontWeight.bold, // Set font weight to bold
-                          letterSpacing: 1.2, // Add letter spacing for clarity
-                          fontStyle: FontStyle.italic, // Set italic style
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          fontStyle: FontStyle.italic,
                           shadows: [
                             Shadow(
                               blurRadius: 2,
                               color: Colors.black.withOpacity(0.5),
                               offset: Offset(1, 1),
-                            ), // Add a subtle shadow for better contrast
-                          ],
-                        ),
-                      ),
-                      Text(
-                        'Email: ${housing.contactEmail}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16, // Set font size to 16
-                          letterSpacing: 1.1, // Add letter spacing for clarity
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(1, 1),
-                            ), // Add a subtle shadow for better contrast
+                            ),
                           ],
                         ),
                       ),
@@ -129,14 +112,14 @@ class HousingCard extends StatelessWidget {
                         'Mobile: ${housing.contactMobile}',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16, // Set font size to 16
-                          letterSpacing: 1.1, // Add letter spacing for clarity
+                          fontSize: 16,
+                          letterSpacing: 1.1,
                           shadows: [
                             Shadow(
                               blurRadius: 2,
                               color: Colors.black.withOpacity(0.5),
                               offset: Offset(1, 1),
-                            ), // Add a subtle shadow for better contrast
+                            ),
                           ],
                         ),
                       ),
