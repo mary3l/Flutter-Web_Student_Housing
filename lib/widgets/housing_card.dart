@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_finals_web/models/housing.dart';
+import 'package:flutter_finals_web/widgets/housing_details_card.dart';
 
 class HousingCard extends StatelessWidget {
   final String housingId;
@@ -19,7 +20,6 @@ class HousingCard extends StatelessWidget {
       Map<String, dynamic>? data = docSnapshot.data() as Map<String, dynamic>?;
 
       if (data != null) {
-        // print('data here', data);
         return HousingModel.fromMap(data);
       } else {
         throw Exception("Fetched data is null");
@@ -48,85 +48,99 @@ class HousingCard extends StatelessWidget {
 
         HousingModel housing = snapshot.data!;
 
-        return SizedBox(
-          width: MediaQuery.of(context).size.width *
-              0.2, // Set width to 80% of screen width
-          child: Card(
-            color: Colors.grey[900], // Set card color to grey[900]
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (housing.housePhotoUrl.isNotEmpty)
-                  Expanded(
-                    child: ImageGallery(
-                      images: housing
-                          .housePhotoUrl, // Ensures the image covers the available space without distorting aspect ratio
-                    ),
-                  ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Email: ${housing.contactEmail}',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 10,
-                          letterSpacing: 1.1,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(1, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        housing.name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Contact Information:',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          fontStyle: FontStyle.italic,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(1, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        'Mobile: ${housing.contactMobile}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          letterSpacing: 1.1,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(1, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+        return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to housing details card when the card is clicked
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HousingDetailsCard(housing: housing),
                 ),
-              ],
+              );
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width *
+                  0.2, // Set width to 20% of screen width
+              child: Card(
+                color: Colors.grey[900], // Set card color to grey[900]
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (housing.housePhotoUrl.isNotEmpty)
+                      Expanded(
+                        child: ImageGallery(
+                          images: housing
+                              .housePhotoUrl, // Ensures the image covers the available space without distorting aspect ratio
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Email: ${housing.contactEmail}',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10,
+                              letterSpacing: 1.1,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(1, 1),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            housing.name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Contact Information:',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.2,
+                              fontStyle: FontStyle.italic,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(1, 1),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            'Mobile: ${housing.contactMobile}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              letterSpacing: 1.1,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(1, 1),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         );
@@ -160,8 +174,8 @@ class ImageGallery extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image(
-                  image: NetworkImage(imageUrl),
+                child: Image.network(
+                  imageUrl,
                   fit: BoxFit.cover,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
