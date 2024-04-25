@@ -48,49 +48,103 @@ class HousingCard extends StatelessWidget {
 
         HousingModel housing = snapshot.data!;
 
-        return Card(
-          color: Colors.grey[900], // Set card color to grey[900]
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (housing.housePhotoUrl.isNotEmpty)
-                ImageGallery(
-                  images: housing.housePhotoUrl,
+        return SizedBox(
+          width: MediaQuery.of(context).size.width *
+              0.2, // Set width to 80% of screen width
+          child: Card(
+            color: Colors.grey[900], // Set card color to grey[900]
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (housing.housePhotoUrl.isNotEmpty)
+                  ImageGallery(
+                    images: housing.housePhotoUrl,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        housing.name,
+                        style: TextStyle(
+                          color: Colors.white, // Set text color to white
+                          fontSize: 25, // Set font size to 20
+                          fontWeight:
+                              FontWeight.bold, // Set font weight to bold
+                        ), // Set text color to white
+                      ),
+                      Text(
+                        'Price: ${housing.pricing}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18, // Set font size to 18
+                          fontWeight:
+                              FontWeight.bold, // Set font weight to bold
+                          letterSpacing: 1.2, // Add letter spacing for clarity
+                          fontStyle: FontStyle.italic, // Set italic style
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(1, 1),
+                            ), // Add a subtle shadow for better contrast
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Contact Information:',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18, // Set font size to 18
+                          fontWeight:
+                              FontWeight.bold, // Set font weight to bold
+                          letterSpacing: 1.2, // Add letter spacing for clarity
+                          fontStyle: FontStyle.italic, // Set italic style
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(1, 1),
+                            ), // Add a subtle shadow for better contrast
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Email: ${housing.contactEmail}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16, // Set font size to 16
+                          letterSpacing: 1.1, // Add letter spacing for clarity
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(1, 1),
+                            ), // Add a subtle shadow for better contrast
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Mobile: ${housing.contactMobile}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16, // Set font size to 16
+                          letterSpacing: 1.1, // Add letter spacing for clarity
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(1, 1),
+                            ), // Add a subtle shadow for better contrast
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      housing.name,
-                      style: TextStyle(
-                          color: Colors.white), // Set text color to white
-                    ),
-                    Text(
-                      'Price: ${housing.pricing}',
-                      style: TextStyle(
-                          color: Colors.white), // Set text color to white
-                    ),
-                    Text(
-                      'Contact Information:',
-                      style: TextStyle(
-                          color: Colors.white), // Set text color to white
-                    ),
-                    Text(
-                      'Email: ${housing.contactEmail}',
-                      style: TextStyle(
-                          color: Colors.white), // Set text color to white
-                    ),
-                    Text(
-                      'Mobile: ${housing.contactMobile}',
-                      style: TextStyle(
-                          color: Colors.white), // Set text color to white
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
