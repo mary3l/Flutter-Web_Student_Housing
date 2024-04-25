@@ -49,6 +49,7 @@ class HousingCard extends StatelessWidget {
         HousingModel housing = snapshot.data!;
 
         return Card(
+          color: Colors.grey[900], // Set card color to grey[900]
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -61,11 +62,31 @@ class HousingCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(housing.name),
-                    Text('Price: ${housing.pricing}'),
-                    Text('Contact Information:'),
-                    Text('Email: ${housing.contactEmail}'),
-                    Text('Mobile: ${housing.contactMobile}'),
+                    Text(
+                      housing.name,
+                      style: TextStyle(
+                          color: Colors.white), // Set text color to white
+                    ),
+                    Text(
+                      'Price: ${housing.pricing}',
+                      style: TextStyle(
+                          color: Colors.white), // Set text color to white
+                    ),
+                    Text(
+                      'Contact Information:',
+                      style: TextStyle(
+                          color: Colors.white), // Set text color to white
+                    ),
+                    Text(
+                      'Email: ${housing.contactEmail}',
+                      style: TextStyle(
+                          color: Colors.white), // Set text color to white
+                    ),
+                    Text(
+                      'Mobile: ${housing.contactMobile}',
+                      style: TextStyle(
+                          color: Colors.white), // Set text color to white
+                    ),
                   ],
                 ),
               ),

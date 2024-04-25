@@ -53,8 +53,7 @@ class _MyAppState extends State<MyApp> {
           decoration: BoxDecoration(
             border: Border.all(),
             image: DecorationImage(
-              image: AssetImage(
-                  "assets/images/bg.jpg"), // Replace with your image path
+              image: AssetImage("assets/images/bg.jpg"),
               fit: BoxFit.cover,
             ),
           ),
