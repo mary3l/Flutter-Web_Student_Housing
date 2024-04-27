@@ -9,7 +9,7 @@ class HousingModel {
   final int contactMobile;
   final String contactEmail;
   // final Map<String, RoomModel> rooms;
-  final List<String> housePhotoUrl;
+  final List<String>? housePhotoUrl;
 
   HousingModel({
     this.id,
@@ -21,7 +21,7 @@ class HousingModel {
     required this.pricing,
     required this.contactEmail,
     required this.contactMobile,
-    required this.housePhotoUrl,
+    this.housePhotoUrl,
   });
 
   factory HousingModel.fromMap(Map<String, dynamic> map) {

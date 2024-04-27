@@ -17,9 +17,9 @@ class HousingDetailsCard extends StatelessWidget {
         child: Card(
           child: Row(
             children: [
-              Expanded(
-                child: ImageGallery(images: housing.housePhotoUrl),
-              ),
+              // Expanded(
+              //   child: ImageGallery(images: housing.housePhotoUrl),
+              // ),
               Expanded(
                 child: Container(
                   child: Padding(

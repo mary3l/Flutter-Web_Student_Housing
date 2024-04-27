@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_finals_web/widgets/create_button.dart';
 import 'package:flutter_finals_web/widgets/login_widget.dart';
 import 'package:flutter_finals_web/widgets/housing_card.dart';
 
@@ -36,20 +37,39 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                // color: Colors.orange, // Set the background color to orange
                 borderRadius:
                     BorderRadius.circular(10), // Set the border radius to 10
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  'Welcome, $userName!',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Text(
+                      'Welcome, $userName!',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                  Container(child: CreateButton()
+
+                      //     Text(
+                      //   'test',
+                      //   style: TextStyle(fontSize: 24),
+                      // )
+                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await _signOut(context);
+                      },
+                      child: Text('Sign Out'),
+                    ),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -89,15 +109,6 @@ class HomeScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () async {
-                  await _signOut(context);
-                },
-                child: Text('Sign Out'),
               ),
             ),
           ],
