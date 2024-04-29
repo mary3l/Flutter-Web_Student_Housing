@@ -60,7 +60,29 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
           child: ListView(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your full name',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.person, color: Colors.grey),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -73,7 +95,28 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter a brief description',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a description';
@@ -115,7 +158,29 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Pricing'),
+                decoration: InputDecoration(
+                  labelText: 'Pricing',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter the price',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.attach_money, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -132,7 +197,29 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Contact Mobile'),
+                decoration: InputDecoration(
+                  labelText: 'Contact Mobile',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your mobile number',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.phone_android, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -149,7 +236,29 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Contact Email'),
+                decoration: InputDecoration(
+                  labelText: 'Contact Email',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your email address',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.email, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -166,7 +275,7 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _pickAndUploadImages,
+                onPressed: _pickAndUploadImage,
                 child: Text('Upload Image'),
               ),
               ElevatedButton(
