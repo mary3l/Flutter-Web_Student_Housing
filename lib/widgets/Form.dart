@@ -128,7 +128,29 @@ class _HousingFormState extends State<HousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Pricing'),
+                decoration: InputDecoration(
+                  labelText: 'Pricing',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter the price',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.attach_money, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -145,7 +167,29 @@ class _HousingFormState extends State<HousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Contact Mobile'),
+                decoration: InputDecoration(
+                  labelText: 'Contact Mobile',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your mobile number',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.phone_android, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -162,7 +206,29 @@ class _HousingFormState extends State<HousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Contact Email'),
+                decoration: InputDecoration(
+                  labelText: 'Contact Email',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your email address',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon: Icon(Icons.email, color: Colors.grey),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
