@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_finals_web/widgets/create_button.dart';
 import 'package:flutter_finals_web/widgets/login_widget.dart';
 import 'package:flutter_finals_web/widgets/housing_card.dart';
+import 'package:flutter_finals_web/widgets/create_button.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName;
@@ -20,6 +20,9 @@ class HomeScreen extends StatelessWidget {
             color: Colors.white, // Text color set to white
           ),
         ),
+        actions: <Widget>[
+          Container(child: CreateButton()),
+        ],
         backgroundColor: Colors.grey[900], // App bar color set to grey
       ),
       body: Container(
@@ -53,13 +56,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(child: CreateButton()
+                  // Container(child: CreateButton()
 
-                      //     Text(
-                      //   'test',
-                      //   style: TextStyle(fontSize: 24),
-                      // )
-                      ),
+                  //     //     Text(
+                  //     //   'test',
+                  //     //   style: TextStyle(fontSize: 24),
+                  //     // )
+                  //     ),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(

@@ -14,7 +14,10 @@ class CreateButton extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Create New Housing'),
+                title: Text(
+                  'Create New Housing',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 content: HousingForm(),
               );
             },

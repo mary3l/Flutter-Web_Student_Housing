@@ -269,6 +269,7 @@ class _HousingFormState extends State<HousingForm> {
                       ),
                     );
                   }
+                  Navigator.pop(context);
                 },
                 child: Text('Submit'),
               ),
