@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           border: Border.all(),
           image: DecorationImage(
             image: AssetImage(
-              "assets/images/bg.jpg", // Replace with your image path
+              "assets/images/bg.jpg",
             ),
             fit: BoxFit.cover,
           ),
@@ -56,13 +56,6 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Container(child: CreateButton()
-
-                  //     //     Text(
-                  //     //   'test',
-                  //     //   style: TextStyle(fontSize: 24),
-                  //     // )
-                  //     ),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: ElevatedButton(

@@ -8,13 +8,6 @@ class HousingDetailsCard extends StatelessWidget {
 
   const HousingDetailsCard({Key? key, required this.housing}) : super(key: key);
 
-  void handleUpdate() {
-    // Implement the update functionality here
-    // For example, you can navigate to a screen where users can edit the housing details
-    // You can also send a request to update the housing details to a backend server
-    print('Update button pressed');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +18,9 @@ class HousingDetailsCard extends StatelessWidget {
         child: Card(
           child: Row(
             children: [
-              // Expanded(
-              //   child: ImageGallery(images: housing.housePhotoUrl),
-              // ),
+              Expanded(
+                child: ImageGallery(images: housing.housePhotoUrl),
+              ),
               Expanded(
                 child: Container(
                   child: Padding(
@@ -54,10 +47,7 @@ class HousingDetailsCard extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: UpdateButton(
-                                    onPressed: () {
-                                      // Handle update functionality here
-                                      handleUpdate();
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ),
                               ],

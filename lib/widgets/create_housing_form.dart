@@ -1,6 +1,12 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_finals_web/models/housing.dart';
 import 'package:flutter_finals_web/services/create/housing.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
 
 class CreateHousingForm extends StatefulWidget {
   @override
@@ -17,6 +23,30 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
   int _pricing = 0;
   int _contactMobile = 0;
   String _contactEmail = '';
+  List<String> housePhotoUrls = [];
+
+  final ImagePicker _picker = ImagePicker();
+  final FirebaseStorage _storage = FirebaseStorage.instance;
+
+  // Function to handle image selection and upload
+  Future<void> _pickAndUploadImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      // Upload image to Firebase Storage
+      File file = File(pickedFile.path);
+      String fileName = Path.basename(file.path);
+      Reference ref = _storage.ref().child('housepics/$fileName');
+      UploadTask uploadTask = ref.putFile(file);
+      await uploadTask.whenComplete(() async {
+        var uploadedFileURL = await ref.getDownloadURL();
+        setState(() {
+          housePhotoUrls.add(uploadedFileURL);
+        });
+      }).catchError((onError) {
+        print(onError);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +166,10 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                onPressed: _pickAndUploadImages,
+                child: Text('Upload Image'),
+              ),
+              ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
@@ -148,6 +182,7 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
                       pricing: _pricing,
                       contactMobile: _contactMobile,
                       contactEmail: _contactEmail,
+                      housePhotoUrl: housePhotoUrls,
                     );
 
                     CreateHousingService createHousingService =

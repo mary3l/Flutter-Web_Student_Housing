@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_finals_web/models/housing.dart';
-import 'package:flutter_finals_web/services/create/housing.dart';
+import 'package:flutter_finals_web/services/update/housing.dart';
 
 class UpdateHousingForm extends StatefulWidget {
   @override
@@ -17,6 +17,7 @@ class _UpdateHousingFormState extends State<UpdateHousingForm> {
   int _pricing = 0;
   int _contactMobile = 0;
   String _contactEmail = '';
+  List<String> housePhotoUrls = [];
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +145,7 @@ class _UpdateHousingFormState extends State<UpdateHousingForm> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    final newHousing = HousingModel(
+                    final updatedHousing = HousingModel(
                       description: _description,
                       isPetsAllowed: _isPetsAllowed,
                       isVisible: _isVisible,
@@ -153,15 +154,16 @@ class _UpdateHousingFormState extends State<UpdateHousingForm> {
                       pricing: _pricing,
                       contactMobile: _contactMobile,
                       contactEmail: _contactEmail,
+                      housePhotoUrl: housePhotoUrls,
                     );
 
-                    CreateHousingService createHousingService =
-                        CreateHousingService();
-                    createHousingService.addHousing(newHousing);
-                    _formKey.currentState!.reset();
+                    UpdateHousingService updateHousingService =
+                        UpdateHousingService();
+                    updateHousingService.updateHousing(updatedHousing);
+                    Navigator.of(context).pop(); // Close the dialog
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('New housing added'),
+                        content: Text('Housing updated'),
                       ),
                     );
                   }

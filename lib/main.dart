@@ -11,6 +11,7 @@ Future<void> main() async {
       projectId: "student-housing-db",
       messagingSenderId: "997141921548",
       appId: "1:997141921548:web:09ad4be66b79bed6e8d329",
+      storageBucket: "student-housing-db.appspot.com",
     ),
   );
   runApp(const MyApp());

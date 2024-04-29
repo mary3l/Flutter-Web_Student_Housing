@@ -68,13 +68,12 @@ class HousingCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // if (housing.housePhotoUrl.isNotEmpty)
-                    //   Expanded(
-                    //     child: ImageGallery(
-                    //       images: housing
-                    //           .housePhotoUrl, // Ensures the image covers the available space without distorting aspect ratio
-                    //     ),
-                    //   ),
+                    if (housing.housePhotoUrl.isNotEmpty)
+                      Expanded(
+                        child: ImageGallery(
+                          images: housing.housePhotoUrl,
+                        ),
+                      ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
