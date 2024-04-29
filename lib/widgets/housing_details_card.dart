@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_finals_web/models/housing.dart';
+import 'package:flutter_finals_web/widgets/update_button.dart';
 
 class HousingDetailsCard extends StatelessWidget {
   final HousingModel housing;
 
   const HousingDetailsCard({Key? key, required this.housing}) : super(key: key);
+
+  void handleUpdate() {
+    // Implement the update functionality here
+    // For example, you can navigate to a screen where users can edit the housing details
+    // You can also send a request to update the housing details to a backend server
+    print('Update button pressed');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +43,24 @@ class HousingDetailsCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Name: ${housing.name}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                Text(
+                                  'Name: ${housing.name}',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: UpdateButton(
+                                    onPressed: () {
+                                      // Handle update functionality here
+                                      handleUpdate();
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 10),
                             Text('Description: ${housing.description}'),

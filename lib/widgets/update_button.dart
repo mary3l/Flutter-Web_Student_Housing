@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_finals_web/widgets/create_housing_form.dart';
+import 'package:flutter_finals_web/widgets/update_housing_form.dart';
 
-class CreateButton extends StatelessWidget {
-  const CreateButton({Key? key}) : super(key: key);
+class UpdateButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const UpdateButton({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +16,13 @@ class CreateButton extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(
-                  'Create New Housing',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                content: CreateHousingForm(),
+                title: Text('Update Housing'),
+                content: UpdateHousingForm(),
               );
             },
           );
         },
-        child: Text('Create New Housing'),
+        child: Text('Update Housing'),
       ),
     );
   }
