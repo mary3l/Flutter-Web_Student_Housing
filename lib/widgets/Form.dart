@@ -30,7 +30,29 @@ class _HousingFormState extends State<HousingForm> {
           child: ListView(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter your full name',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.person, color: Colors.grey),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -43,7 +65,28 @@ class _HousingFormState extends State<HousingForm> {
               ),
               SizedBox(height: 10),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Enter a brief description',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.grey.shade300, width: 1.0),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  fillColor: Colors.grey.shade100,
+                  filled: true,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a description';
