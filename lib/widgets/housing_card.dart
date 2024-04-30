@@ -20,7 +20,7 @@ class HousingCard extends StatelessWidget {
       Map<String, dynamic>? data = docSnapshot.data() as Map<String, dynamic>?;
 
       if (data != null) {
-        return HousingModel.fromMap(data);
+        return HousingModel.fromMap({"id": housingId, ...data});
       } else {
         throw Exception("Fetched data is null");
       }

@@ -1,12 +1,12 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
-
 import 'dart:html';
+import 'dart:html' as html;
 import 'package:flutter/material.dart';
-import 'package:flutter_finals_web/models/housing.dart';
-import 'package:flutter_finals_web/services/create/housing.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter_finals_web/models/housing.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_finals_web/services/create/housing.dart';
+// ignore_for_file: avoid_web_libraries_in_flutter
 
 class CreateHousingForm extends StatefulWidget {
   @override
@@ -28,15 +28,23 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
   final ImagePicker _picker = ImagePicker();
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  // Function to handle image selection and upload
+// Function to handle image selection and upload
   Future<void> _pickAndUploadImage() async {
+    // Use the ImagePicker for web
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      // Upload image to Firebase Storage
-      File file = File(pickedFile.path);
-      String fileName = Path.basename(file.path);
+      // Create a Blob from the picked file for web compatibility
+      html.File file =
+          html.File([await pickedFile.readAsBytes()], pickedFile.name);
+      String fileName = Path.basename(pickedFile.name);
+
+      // Get reference to the Firebase storage
       Reference ref = _storage.ref().child('housepics/$fileName');
-      UploadTask uploadTask = ref.putFile(file);
+
+      // Create an upload task
+      UploadTask uploadTask = ref.putBlob(file);
+
+      // Manage the upload task
       await uploadTask.whenComplete(() async {
         var uploadedFileURL = await ref.getDownloadURL();
         setState(() {
