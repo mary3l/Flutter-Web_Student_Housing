@@ -1,8 +1,5 @@
-import 'dart:html';
-import 'dart:html' as html;
 import 'package:flutter/material.dart';
-import 'package:path/path.dart' as Path;
-import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_finals_web/models/housing.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_finals_web/services/create/housing.dart';
@@ -25,34 +22,37 @@ class _CreateHousingFormState extends State<CreateHousingForm> {
   String _contactEmail = '';
   List<String> housePhotoUrls = [];
 
-  final ImagePicker _picker = ImagePicker();
-  final FirebaseStorage _storage = FirebaseStorage.instance;
-
 // Function to handle image selection and upload
   Future<void> _pickAndUploadImage() async {
-    // Use the ImagePicker for web
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      // Create a Blob from the picked file for web compatibility
-      html.File file =
-          html.File([await pickedFile.readAsBytes()], pickedFile.name);
-      String fileName = Path.basename(pickedFile.name);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
+      withData: true,
+    );
 
-      // Get reference to the Firebase storage
-      Reference ref = _storage.ref().child('housepics/$fileName');
+    if (result != null) {
+      List<Future> uploadTasks = [];
 
-      // Create an upload task
-      UploadTask uploadTask = ref.putBlob(file);
+      for (PlatformFile file in result.files) {
+        Reference ref = FirebaseStorage.instance.ref('uploads/${file.name}');
+        UploadTask uploadTask = ref.putData(
+            file.bytes!, SettableMetadata(contentType: 'image/jpeg'));
 
-      // Manage the upload task
-      await uploadTask.whenComplete(() async {
-        var uploadedFileURL = await ref.getDownloadURL();
-        setState(() {
-          housePhotoUrls.add(uploadedFileURL);
+        // Collect all upload tasks
+        var task = uploadTask.whenComplete(() async {
+          String imageUrl = await ref.getDownloadURL();
+          setState(() {
+            housePhotoUrls.add(imageUrl);
+          });
+        }).catchError((e) {
+          print("Failed to upload image: $e");
         });
-      }).catchError((onError) {
-        print(onError);
-      });
+
+        uploadTasks.add(task);
+      }
+
+      // Wait for all uploads to complete
+      await Future.wait(uploadTasks);
     }
   }
 
